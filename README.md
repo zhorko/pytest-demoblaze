@@ -1,4 +1,4 @@
-# Pytest-Demoblaze QA Automation
+# Demoblaze QA Automation
 
 ## Project Overview
 

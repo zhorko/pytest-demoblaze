@@ -1,8 +1,7 @@
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.keys import Keys
 from selenium.common import exceptions
+
 
 class CartPage:
 
@@ -13,10 +12,12 @@ class CartPage:
     def __get_table(self, wait):
         try:
             cart_table = wait.until(
-            EC.visibility_of_all_elements_located((By.CSS_SELECTOR, "tr.success td"))
+                EC.visibility_of_all_elements_located(
+                    (By.CSS_SELECTOR, "tr.success td")
+                )
             )
         except exceptions.ElementNotVisibleException as e:
-            print('{0} >> {1}'.format('cart_table', e))
+            print("{0} >> {1}".format("cart_table", e))
 
         return cart_table
 
@@ -33,12 +34,12 @@ class CartPage:
 
     def verify_empty(self, wait):
         try:
-            cart_empty = wait.until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, "tr.success td"))
+            wait.until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, "tr.success td"))
             )
             el_found = True
         except exceptions.TimeoutException as e:
-            print('{0} >> {1}'.format('cart_empty', e))
+            print("{0} >> {1}".format("cart_empty", e))
             el_found = False
 
         return el_found

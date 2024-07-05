@@ -14,9 +14,9 @@ def test_cart_details(_browser):
     _browser.get(URL)
     _browser.maximize_window()
 
-    data_csv = pd.read_table("data/data.csv", 
-                             delimiter =",", 
-                             float_precision='round_trip') 
+    data_csv = pd.read_table(
+        "data/data.csv", delimiter=",", float_precision="round_trip"
+    )
 
     # initializers
     home_page = HomePage(_browser)
@@ -26,15 +26,16 @@ def test_cart_details(_browser):
     home_page.open_category(wait, 2)
 
     home_page.open_product(wait, data_csv.iloc[0, 1])
-    
+
     prod_page.buy_product(wait)
     prod_page.open_cart(wait)
 
     cart_table = cart_page.get_product_details(wait)
-    
+
     assert str(data_csv.iloc[0, 2].astype(int)) in cart_table[1].text
     assert data_csv.iloc[0, 1] in cart_table[0].text
-    
+
+
 def test_cart_delete(_browser):
 
     wait = WebDriverWait(_browser, 10)
@@ -43,7 +44,9 @@ def test_cart_delete(_browser):
     _browser.get(URL)
     _browser.maximize_window()
 
-    data_csv = pd.read_table("data/data.csv", delimiter =",", float_precision='round_trip') 
+    data_csv = pd.read_table(
+        "data/data.csv", delimiter=",", float_precision="round_trip"
+    )
 
     # initializers
     home_page = HomePage(_browser)
@@ -53,10 +56,10 @@ def test_cart_delete(_browser):
     home_page.open_category(wait, 2)
 
     home_page.open_product(wait, data_csv.iloc[0, 1])
-    
+
     prod_page.buy_product(wait)
     prod_page.open_cart(wait)
-    
+
     cart_page.delete_product(wait)
 
     assert cart_page.verify_empty(wait)

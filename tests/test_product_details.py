@@ -14,9 +14,9 @@ def test_product_details(_browser):
     _browser.get(url)
     _browser.maximize_window()
 
-    data_csv = pd.read_table("data/data.csv",
-                            delimiter =",",
-                            float_precision='round_trip')
+    data_csv = pd.read_table(
+        "data/data.csv", delimiter=",", float_precision="round_trip"
+    )
 
     # initializers
     home_page = HomePage(_browser)

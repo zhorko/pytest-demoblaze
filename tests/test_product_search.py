@@ -8,16 +8,16 @@ def test_demon(_browser):
 
     wait = WebDriverWait(_browser, 10)
     url = "https://www.demoblaze.com"
-    data_csv = pd.read_table("data/data.csv", 
-                             delimiter =",", 
-                             float_precision='round_trip')
+    data_csv = pd.read_table(
+        "data/data.csv", delimiter=",", float_precision="round_trip"
+    )
 
     _browser.get(url)
     _browser.maximize_window()
 
     # initializers
     home_page = HomePage(_browser)
-    
+
     home_page.open_category(wait, 3)
 
     cat_prod = home_page.get_search_products(wait, data_csv.iloc[1, 1])
